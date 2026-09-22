@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --color-ink: #0b1f33;
+  --color-paper: #ffffff;
+  --color-mist: #f4f5f1;
+  --color-line: #e3e6df;
+  --color-muted: #475467;
+  --color-pine: #14745a;
+  --color-pine-deep: #0d5240;
+  --color-navy: #0b1f33;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: #ffffff;
+  color: #0b1f33;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #14745a;
+  color: #fff;
+}
+
+/* Shape rule for this page: buttons are full pill, cards are 16px, inputs are 8px. */
+
+section[id] {
+  scroll-margin-top: 88px;
+}

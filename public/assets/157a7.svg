@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="30" height="6" viewBox="0 0 30 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Animate respon">
+<rect width="30" height="6" rx="3" fill="white"/>
+<circle id="Ellipse" opacity="0.3" cx="5" cy="3" r="3" fill="#223C5B"/>
+<circle id="Ellipse_2" opacity="0.6" cx="15" cy="3" r="3" fill="#223C5B"/>
+<circle id="Ellipse_3" cx="25" cy="3" r="3" fill="#223C5B"/>
+</g>
+</svg>
