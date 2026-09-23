@@ -24,6 +24,7 @@ import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import Velaris from "@/components/ui/velaris";
 import { ChatSimulation } from "@/components/ui/chat-simulation";
+import trialConfig from "@/config/trial.json";
 
 // registerPlugin menyentuh window/document pada sebagian versi GSAP —
 // hanya jalankan di client agar SSR/prerender tidak 500.
@@ -130,7 +131,6 @@ function Nav() {
   const links = [
     { href: "#solution", label: "Solution" },
     { href: "#fitur-finance", label: "Features" },
-    { href: "#cara-kerja", label: "How It Works" },
     { href: "#mobile", label: "Mobile" },
     { href: "#free-trial", label: "Trial" },
   ];
@@ -612,11 +612,11 @@ function Features() {
   return (
     <section id="fitur-finance" className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
-        {/* Header ala Bevel: centered statement */}
+        {/* Header */}
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-5xl">
-              Corporate Finance Governance, Handled in a Chat
+              How Laras Simplifies Expense Operations
             </h2>
             <p className="mt-3 text-base leading-relaxed text-[#667085]">
               Scan receipts, draft memos, approve, and report, all without opening a form.
@@ -624,25 +624,29 @@ function Features() {
           </div>
         </Reveal>
 
-        {/* Row 1: 3 cards ala Strain / Sleep / Recovery */}
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {/* Card 1 — Chat */}
+        {/* Row 1: Step 1 + Step 2 */}
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {/* Step 1 — Input & Capture (gabungan Chat + Scan) */}
           <Reveal delay={0}>
-            <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0">
-              <h3 className="text-2xl font-semibold tracking-tight">Chat</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[#475467]">
-                Just tell Laras what you spent. It gathers the details and records them accurately.
+            <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0 sm:p-8 sm:pb-0">
+              <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 1</span>
+              <h3 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0B1F33] md:text-[28px]">
+                Input &amp; Capture
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#475467]">
+                Chat about your spending naturally in English or Indonesian, or upload receipts.
+                Laras extracts vendor names, dates, categories, and totals instantly.
               </p>
-              <div className="relative mt-6 -mb-12">
-                <PhoneFrame flushBottom>
+              <div className="relative mt-6 -mb-12 flex items-end justify-center gap-3">
+                <PhoneFrame flushBottom className="mx-0 max-w-[200px] shrink-0">
                   <p className="text-center text-[10px] font-semibold tracking-wide text-[#475467]">
                     LARAS.AI
                   </p>
                   <div className="mt-2 grid gap-1.5 text-[11px] leading-snug">
-                    <p className="w-fit max-w-[90%] justify-self-end rounded-xl rounded-br-sm bg-[#0B1F33] px-2.5 py-2 text-white">
+                    <p className="w-fit max-w-[95%] justify-self-end rounded-xl rounded-br-sm bg-[#0B1F33] px-2.5 py-2 text-white">
                       Record the parking reimbursement of 85K, okay?
                     </p>
-                    <p className="w-fit max-w-[90%] rounded-xl rounded-bl-sm bg-[#F1F3F0] px-2.5 py-2">
+                    <p className="w-fit max-w-[95%] rounded-xl rounded-bl-sm bg-[#F1F3F0] px-2.5 py-2">
                       Okey. Confirm the date &amp; project?
                     </p>
                   </div>
@@ -651,24 +655,7 @@ function Features() {
                     Write a message…
                   </div>
                 </PhoneFrame>
-                <div className="absolute bottom-14 -left-1 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5">
-                  <p className="text-[10px] text-[#667085]">Multi-language chat</p>
-                  <p className="text-xs font-bold">ID • EN</p>
-                </div>
-              </div>
-            </article>
-          </Reveal>
-
-          {/* Card 2 — Pindai (dark phone ala Sleep) */}
-          <Reveal delay={0.06}>
-            <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#E9EDF5] p-6 pb-0">
-              <h3 className="text-2xl font-semibold tracking-tight">Scan</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[#475467]">
-                Upload receipts, bills, or invoices. Vendor names, dates, categories, and totals are
-                extracted automatically.
-              </p>
-              <div className="relative mt-6 -mb-12">
-                <PhoneFrame dark flushBottom>
+                <PhoneFrame dark flushBottom className="mx-0 max-w-[200px] shrink-0">
                   <p className="text-center text-[10px] font-semibold text-white/70">
                     Document Intelligence
                   </p>
@@ -677,11 +664,13 @@ function Features() {
                       {Array.from({ length: 10 }).map((_, i) => (
                         <span
                           key={i}
-                          className={`h-4 rounded ${i < 6 ? "bg-[#8FD6B4]" : "bg-white/20"}`}
+                          className={`h-4 rounded ${i < 5 ? "bg-[#8FD6B4]" : "bg-white/20"}`}
                         />
                       ))}
                     </div>
-                    <p className="mt-2 text-[11px] font-semibold">5 readable receipts</p>
+                    <p className="mt-2 text-[11px] font-semibold text-white">
+                      5 readable receipts
+                    </p>
                     <p className="text-[10px] text-white/60">Vendor • Date • Total</p>
                   </div>
                   <div className="mt-2 grid gap-1.5 text-[10px]">
@@ -689,26 +678,35 @@ function Features() {
                       <span className="font-semibold">Parking for 1 day</span>
                       <span className="font-bold">85,000 IDR</span>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg bg-white/10 px-2.5 py-2">
+                    <div className="flex items-center justify-between rounded-lg bg-white/10 px-2.5 py-2 text-white">
                       <span>Fuel • Toll</span>
                       <span>2 files</span>
                     </div>
                   </div>
                 </PhoneFrame>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5">
+                  <p className="text-[10px] whitespace-nowrap text-[#667085]">
+                    Multi-language chat
+                  </p>
+                  <p className="text-xs font-bold whitespace-nowrap">ID • EN</p>
+                </div>
               </div>
             </article>
           </Reveal>
 
-          {/* Card 3 — Memo (ala Recovery) */}
-          <Reveal delay={0.12}>
-            <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0">
-              <h3 className="text-2xl font-semibold tracking-tight">Memo</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[#475467]">
-                Reimbursement, cash advance, and accountability drafts, ready instantly in your
-                office&apos;s usual format.
+          {/* Step 2 — Auto Drafted Memo */}
+          <Reveal delay={0.06}>
+            <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0 sm:p-8 sm:pb-0">
+              <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 2</span>
+              <h3 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0B1F33] md:text-[28px]">
+                Auto Drafted Memo
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#475467]">
+                Draft Reimbursement, Advances, and Reports are instantly organized following your
+                office format.
               </p>
-              <div className="relative mt-6 -mb-12">
-                <PhoneFrame flushBottom>
+              <div className="relative mt-6 -mb-12 flex justify-center">
+                <PhoneFrame flushBottom className="mx-0 max-w-[240px]">
                   <div className="rounded-xl bg-gradient-to-b from-[#DCEFE6] to-white p-2.5 text-center">
                     <p className="text-[10px] text-[#475467]">Smart Expense Memo</p>
                     <p className="text-lg font-bold">Rp85,000</p>
@@ -724,45 +722,46 @@ function Features() {
                     <div className="rounded-lg bg-transparent px-2 py-2" />
                   </div>
                 </PhoneFrame>
-                <div className="absolute right-0 bottom-16 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5">
-                  <p className="text-[10px] text-[#667085]">Confirm before saving</p>
-                  <p className="text-xs font-bold">Check the draft first</p>
+                <div className="absolute right-2 bottom-20 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5 sm:right-6">
+                  <p className="text-[10px] whitespace-nowrap text-[#667085]">
+                    Confirm before saving
+                  </p>
+                  <p className="text-xs font-bold whitespace-nowrap">Check the draft first</p>
                 </div>
               </div>
             </article>
           </Reveal>
         </div>
 
-        {/* Row 2: wide card ala Understand what you eat */}
+        {/* Row 2: Step 3 wide card */}
         <Reveal delay={0.05}>
           <article className="mt-5 grid overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#E8EAFB] via-[#EDE9FA] to-[#E6E4F7] lg:grid-cols-[1fr_1.2fr]">
             <div className="p-8 sm:p-10 lg:p-12">
-              <h3 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-                Fast and Secure
-                <br />
-                Approval on Mobile
+              <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 3</span>
+              <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
+                Review &amp; Sign on Mobile
               </h3>
               <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-[#475467]">
-                Managers approve across up to 3 sequential levels from their phone, with biometric
-                2FA, digital signature, and Return-for-Review.
+                Managers can review and approve submissions up to 3 hierarchical levels from mobile
+                with biometric 2FA security and digital signatures.
               </p>
               <ul className="mt-6 grid gap-2.5">
                 {[
                   { t: "3 sequential levels", d: "Approve / Reject / Return" },
-                  { t: "Mobile 2FA", d: "Fingerprint and face" },
-                  { t: "Digital signature", d: "Draw on screen / gallery" },
+                  { t: "Mobile 2FA", d: "Fingerprint & face" },
+                  { t: "Digital signature", d: "" },
                 ].map((r) => (
                   <li
                     key={r.t}
                     className="flex items-center justify-between rounded-xl bg-white/80 px-4 py-3 text-sm ring-1 ring-white"
                   >
                     <span className="font-semibold">{r.t}</span>
-                    <span className="text-xs text-[#667085]">{r.d}</span>
+                    {r.d ? <span className="text-xs text-[#667085]">{r.d}</span> : null}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="relative grid gap-3 p-8 sm:p-10 lg:p-10">
+            <div className="relative grid content-center gap-3 p-8 sm:p-10 lg:p-10">
               <div className="grid grid-cols-[1fr_1fr] gap-3">
                 <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
                   <p className="flex items-center gap-1.5 text-[11px] font-semibold">
@@ -771,7 +770,7 @@ function Features() {
                   </p>
                   <p className="mt-2 text-xl font-bold">Rp1.2M</p>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[#EDF1F6]">
-                    <div className="h-full w-2/3 rounded-full bg-[#14745A]" />
+                    <div className="h-full w-2/3 rounded-full bg-[#2F6B4F]" />
                   </div>
                   <p className="mt-2 text-[11px] text-[#667085]">Approved • 09:41</p>
                 </div>
@@ -814,7 +813,7 @@ function Features() {
           </article>
         </Reveal>
 
-        {/* Row 3: wide card ala Connect your health records */}
+        {/* Row 3: Step 4 wide card */}
         <Reveal delay={0.08}>
           <article className="mt-5 grid overflow-hidden rounded-[1.5rem] bg-[#EAF1F3] lg:grid-cols-[1.2fr_1fr]">
             <div className="relative flex justify-center overflow-hidden px-8 pt-8 pb-0">
@@ -844,7 +843,7 @@ function Features() {
                 </PhoneFrame>
                 <div className="absolute top-16 -right-4 rotate-6 rounded-2xl bg-white px-4 py-3 text-[11px] shadow-lg ring-1 ring-black/5 sm:-right-8">
                   <p className="text-sm font-bold">PDF</p>
-                  <p className="text-[#667085]">Unduh instan</p>
+                  <p className="text-[#667085]">Instant download</p>
                 </div>
                 <div className="absolute bottom-16 -left-4 -rotate-3 rounded-2xl bg-white px-4 py-3 text-[11px] shadow-lg ring-1 ring-black/5 sm:-left-8">
                   <p className="text-sm font-bold">WhatsApp</p>
@@ -853,72 +852,18 @@ function Features() {
               </div>
             </div>
             <div className="p-8 sm:p-10 lg:p-12">
-              <h3 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-                Chat-First Expense Reporting
+              <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 4</span>
+              <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
+                Effortless Month End Reporting
               </h3>
               <p className="mt-3 max-w-[40ch] text-sm leading-relaxed text-[#475467]">
-                Request spending summaries directly in chat—e.g., “Summarize this month&apos;s memos
-                for the Sales division.” Get instant insights ready to download as PDF or share via
-                WhatsApp.
+                Ask for a summary of expenses directly in chat, for example, &ldquo;Summarize this
+                month&apos;s memo by sales division.&rdquo; Receive a summary ready to download as
+                PDF or share via WhatsApp.
               </p>
-              <a
-                href="#cara-kerja"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#14745A]"
-              >
-                See how it works
-                <ArrowRight size={16} weight="bold" />
-              </a>
             </div>
           </article>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function HowItWorks() {
-  const steps = [
-    {
-      n: "1",
-      title: "Scan or chat",
-      body: "Snap a receipt or describe the expense in everyday language.",
-    },
-    {
-      n: "2",
-      title: "Confirm the draft",
-      body: "Laras prepares a tidy memo and asks for your confirmation before saving.",
-    },
-    {
-      n: "3",
-      title: "Approve and share",
-      body: "Managers approve from their phone, reports are ready as PDF or WhatsApp.",
-    },
-  ];
-  return (
-    <section id="cara-kerja" className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
-        <Reveal>
-          <h2 className="max-w-[24ch] text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-            From receipt to report in three steps
-          </h2>
-          <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-[#475467]">
-            The same flow for every team. No thick manuals, no special training.
-          </p>
-        </Reveal>
-        <ol className="mt-10 grid gap-0 overflow-hidden rounded-2xl ring-1 ring-[#E3E6DF] md:grid-cols-3">
-          {steps.map((s, i) => (
-            <li
-              key={s.n}
-              className={`bg-white p-7 ${i > 0 ? "border-t border-[#E3E6DF] md:border-t-0 md:border-l" : ""}`}
-            >
-              <Reveal delay={i * 0.06}>
-                <span className="font-mono text-sm font-semibold text-[#14745A]">Step {s.n}</span>
-                <h3 className="mt-2 text-xl font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#475467]">{s.body}</p>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );
@@ -1045,24 +990,26 @@ function Trial() {
   // Spec: section-license.md v1.3.1 (PRD v1.27/v1.28 §5.12) — Free Trial only.
   // Layout: sticky intro (left) + quota rows card (right). Base License card removed.
   const reduce = useReducedMotion();
+  // Quota angka dinamis dari CMS / Config JSON (config/trial.json).
+  // Ubah nilai di sana tanpa menyentuh markup — seluruh copy mengikuti otomatis.
   const rows = [
     {
       icon: ChatCircleText,
-      value: "70",
+      value: String(trialConfig.trial_chat_limit),
       label: "Total Shared Chats",
       desc: "One shared pool for text chats, receipt scans, and memo drafts.",
     },
     {
       icon: Users,
-      value: "2",
+      value: String(trialConfig.trial_seats),
       label: "Included User Seats",
-      desc: "1 Admin plus 1 approver. Test the mobile 2FA approval flow from start to finish.",
+      desc: `1 Admin plus ${trialConfig.trial_seats - 1} approver. Test the mobile 2FA approval flow from start to finish.`,
     },
     {
       icon: Clock,
       value: "∞",
       label: "No Time Expiry",
-      desc: "No 7-day or 14-day cutoff. Active until all 70 chats are used.",
+      desc: `No 7 day or 14 day cutoff. Active until all ${trialConfig.trial_chat_limit} chats are used.`,
     },
   ];
   return (
@@ -1071,11 +1018,11 @@ function Trial() {
         <div className="lg:sticky lg:top-24 lg:self-start">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
-              70 free chats to test everything. No expiry date.
+              Experience the full workflow. No expiry date.
             </h2>
             <p className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#475467]">
-              No credit card. No 7-day countdown. Try approvals, memos, and reports with your
-              team, then move to a monthly plan when the quota runs out.
+              No credit card required. No 7-day countdown. Test real memos, mobile approvals, and
+              reports with your core team, then scale whenever you&apos;re ready.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
@@ -1230,7 +1177,6 @@ export default function Page() {
           <Hero />
       <Modules />
       <Features />
-      <HowItWorks />
       <MobileShowcase />
           <Trial />
           <CtaFooter />
