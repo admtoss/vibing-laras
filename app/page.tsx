@@ -9,7 +9,6 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ChatCircleText,
   ShieldCheck,
-  ArrowRight,
   Globe,
   Clock,
   AppleLogo,
@@ -278,7 +277,6 @@ type SolutionRow = {
   imageHeight?: number;
   overlap?: boolean;
   status: "live" | "soon";
-  cta?: string;
   features: { title: string; body: string }[];
 };
 
@@ -287,7 +285,7 @@ function SolutionPreview({ row, className = "" }: { row: SolutionRow; className?
     return (
       <div className="flex w-full max-w-[300px] flex-col items-center justify-center gap-3 rounded-[2rem] bg-[#F4F3EC] px-6 py-16 text-center ring-1 ring-black/5">
         <SoonBadge />
-        <p className="text-sm text-[#607D8B]">HR mockup is on its way</p>
+        <p className="text-sm leading-relaxed text-[#475467]">HR mockup is on its way</p>
       </div>
     );
   }
@@ -469,13 +467,13 @@ function Modules() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex items-center rounded-full bg-white px-4 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-[#607D8B] uppercase ring-1 ring-black/5">
+            <p className="inline-flex items-center rounded-full bg-white px-4 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-[#0B1F33] uppercase ring-1 ring-black/5">
               Governance AI for every role
             </p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-balance text-[#101418] md:text-5xl">
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
               One calm flow for staff, managers, and finance
             </h2>
-            <p className="mx-auto mt-3 max-w-[62ch] text-base leading-relaxed text-[#607D8B]">
+            <p className="mx-auto mt-3 max-w-[62ch] text-base leading-relaxed text-[#475467]">
               Staff chat instead of filling forms. Managers approve from their phone. Finance keeps
               a clean audit trail. HR is next in line.
             </p>
@@ -492,20 +490,20 @@ function Modules() {
                 >
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="inline-flex items-center rounded-lg bg-[#DCE9F7] px-3 py-1 text-[11px] font-bold tracking-[0.08em] text-[#3E6E9E] uppercase">
+                      <span className="inline-flex items-center rounded-lg bg-[#DCE9F7] px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-[#3E6E9E] uppercase">
                         {row.label}
                       </span>
                       {row.status === "soon" ? <SoonBadge /> : null}
                     </div>
-                    <h3 className="mt-4 max-w-[20ch] text-2xl font-bold tracking-tight text-balance text-[#101418] md:text-4xl">
+                    <h3 className="mt-4 max-w-[20ch] text-2xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-3xl">
                       {row.benefit}
                     </h3>
                     <hr className="my-5 border-[#E5E3DA]" />
-                    <p className="max-w-[52ch] text-sm leading-relaxed text-[#3F4750] md:text-base">
+                    <p className="max-w-[52ch] text-sm leading-relaxed text-[#475467] md:text-base">
                       {row.blurb}
                     </p>
                     {row.status === "soon" ? (
-                      <p className="mt-5 max-w-[52ch] text-sm leading-relaxed text-[#3F4750] md:text-[15px]">
+                      <p className="mt-5 max-w-[52ch] text-sm leading-relaxed text-[#475467] md:text-[15px]">
                         Request leave dates in a quick chat, then approve HR requests and sign
                         documents in one place.
                       </p>
@@ -517,23 +515,14 @@ function Modules() {
                               aria-hidden
                               className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0D7A5F]"
                             />
-                            <p className="text-sm leading-relaxed text-[#101418] md:text-[15px]">
-                              <strong className="font-bold">{f.title}: </strong>
-                              <span className="text-[#3F4750]">{f.body}</span>
+                            <p className="text-sm leading-relaxed text-[#0B1F33] md:text-[15px]">
+                              <strong className="font-semibold">{f.title}: </strong>
+                              <span className="text-[#475467]">{f.body}</span>
                             </p>
                           </li>
                         ))}
                       </ul>
                     )}
-                    {row.cta ? (
-                      <a
-                        href="#cta"
-                        className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-[#0B1F33] px-6 py-3 text-sm font-semibold whitespace-nowrap text-white transition hover:bg-[#14745A] active:translate-y-px active:scale-[0.98]"
-                      >
-                        {row.cta}
-                        <ArrowRight size={16} weight="bold" />
-                      </a>
-                    ) : null}
                   </div>
                   <div className="mt-8 flex justify-center lg:hidden">
                     <SolutionPreview
@@ -615,10 +604,10 @@ function Features() {
         {/* Header */}
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
               How Laras Simplifies Expense Operations
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-[#667085]">
+            <p className="mt-3 text-base leading-relaxed text-[#475467]">
               Scan receipts, draft memos, approve, and report, all without opening a form.
             </p>
           </div>
@@ -630,7 +619,7 @@ function Features() {
           <Reveal delay={0}>
             <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0 sm:p-8 sm:pb-0">
               <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 1</span>
-              <h3 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0B1F33] md:text-[28px]">
+              <h3 className="mt-1.5 text-2xl font-semibold tracking-tight text-[#0B1F33] md:text-3xl">
                 Input &amp; Capture
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#475467]">
@@ -650,7 +639,7 @@ function Features() {
                       Okey. Confirm the date &amp; project?
                     </p>
                   </div>
-                  <div className="mt-2 flex items-center gap-1.5 rounded-full bg-[#F1F3F0] px-2.5 py-2 text-[10px] text-[#667085]">
+                  <div className="mt-2 flex items-center gap-1.5 rounded-full bg-[#F1F3F0] px-2.5 py-2 text-[10px] text-[#475467]">
                     <ChatCircleText size={12} />
                     Write a message…
                   </div>
@@ -685,10 +674,10 @@ function Features() {
                   </div>
                 </PhoneFrame>
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5">
-                  <p className="text-[10px] whitespace-nowrap text-[#667085]">
+                  <p className="text-[10px] whitespace-nowrap text-[#475467]">
                     Multi-language chat
                   </p>
-                  <p className="text-xs font-bold whitespace-nowrap">ID • EN</p>
+                  <p className="text-xs font-semibold whitespace-nowrap">ID • EN</p>
                 </div>
               </div>
             </article>
@@ -698,7 +687,7 @@ function Features() {
           <Reveal delay={0.06}>
             <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-[#EDF1F6] p-6 pb-0 sm:p-8 sm:pb-0">
               <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 2</span>
-              <h3 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0B1F33] md:text-[28px]">
+              <h3 className="mt-1.5 text-2xl font-semibold tracking-tight text-[#0B1F33] md:text-3xl">
                 Auto Drafted Memo
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#475467]">
@@ -716,17 +705,17 @@ function Features() {
                   </div>
                   <div className="mt-2 grid grid-cols-2 gap-1.5 text-[10px]">
                     <div className="rounded-lg bg-[#F1F3F0] px-2 py-2">
-                      <p className="text-[#667085]">Reimburse</p>
-                      <p className="font-bold">Ready to send</p>
+                      <p className="text-[#475467]">Reimburse</p>
+                      <p className="font-semibold">Ready to send</p>
                     </div>
                     <div className="rounded-lg bg-transparent px-2 py-2" />
                   </div>
                 </PhoneFrame>
                 <div className="absolute right-2 bottom-20 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5 sm:right-6">
-                  <p className="text-[10px] whitespace-nowrap text-[#667085]">
+                  <p className="text-[10px] whitespace-nowrap text-[#475467]">
                     Confirm before saving
                   </p>
-                  <p className="text-xs font-bold whitespace-nowrap">Check the draft first</p>
+                  <p className="text-xs font-semibold whitespace-nowrap">Check the draft first</p>
                 </div>
               </div>
             </article>
@@ -738,7 +727,7 @@ function Features() {
           <article className="mt-5 grid overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#E8EAFB] via-[#EDE9FA] to-[#E6E4F7] lg:grid-cols-[1fr_1.2fr]">
             <div className="p-8 sm:p-10 lg:p-12">
               <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 3</span>
-              <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
+              <h3 className="mt-1.5 text-2xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-3xl">
                 Review &amp; Sign on Mobile
               </h3>
               <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-[#475467]">
@@ -756,7 +745,7 @@ function Features() {
                     className="flex items-center justify-between rounded-xl bg-white/80 px-4 py-3 text-sm ring-1 ring-white"
                   >
                     <span className="font-semibold">{r.t}</span>
-                    {r.d ? <span className="text-xs text-[#667085]">{r.d}</span> : null}
+                    {r.d ? <span className="text-xs text-[#475467]">{r.d}</span> : null}
                   </li>
                 ))}
               </ul>
@@ -772,10 +761,10 @@ function Features() {
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[#EDF1F6]">
                     <div className="h-full w-2/3 rounded-full bg-[#2F6B4F]" />
                   </div>
-                  <p className="mt-2 text-[11px] text-[#667085]">Approved • 09:41</p>
+                  <p className="mt-2 text-[11px] text-[#475467]">Approved • 09:41</p>
                 </div>
                 <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
-                  <p className="text-[11px] font-semibold text-[#667085]">Cost breakdown</p>
+                  <p className="text-[11px] font-semibold text-[#475467]">Cost breakdown</p>
                   <div className="mt-2 grid gap-1.5 text-[11px]">
                     <div className="flex justify-between">
                       <span>Parking</span>
@@ -791,10 +780,10 @@ function Features() {
                     </div>
                   </div>
                   <div className="mt-2 flex gap-1.5">
-                    <span className="flex-1 rounded-full bg-[#0B1F33] py-1.5 text-center text-[11px] font-bold text-white">
+                    <span className="flex-1 rounded-full bg-[#0B1F33] py-1.5 text-center text-[11px] font-semibold text-white">
                       Approve
                     </span>
-                    <span className="flex-1 rounded-full py-1.5 text-center text-[11px] font-bold ring-1 ring-black/15">
+                    <span className="flex-1 rounded-full py-1.5 text-center text-[11px] font-semibold ring-1 ring-black/15">
                       Return
                     </span>
                   </div>
@@ -827,14 +816,14 @@ function Features() {
               />
               <div className="relative -mb-12 w-full max-w-[340px]">
                 <PhoneFrame flushBottom className="max-w-[320px]">
-                  <p className="text-center text-[13px] font-bold">Laras</p>
+                  <p className="text-center text-[13px] font-semibold">Laras</p>
                   <div className="mt-3 grid gap-2.5 text-[13px] leading-snug">
                     <p className="w-fit max-w-[95%] justify-self-end rounded-2xl rounded-br-md bg-[#0B1F33] px-4 py-3 text-white">
                       Summarize this month&apos;s memo by sales division..
                     </p>
                     <div className="w-fit max-w-[95%] rounded-2xl rounded-bl-md bg-[#F1F3F0] px-4 py-3">
-                      <p className="font-bold">January sales memo</p>
-                      <p className="mt-0.5 text-[#667085]">Total Rp4.8m • 12 memos</p>
+                      <p className="font-semibold">January sales memo</p>
+                      <p className="mt-0.5 text-[#475467]">Total Rp4.8m • 12 memos</p>
                     </div>
                     <p className="w-full rounded-2xl bg-[#0B1F33] px-4 py-3 text-center font-medium text-white">
                       Download Report
@@ -842,18 +831,18 @@ function Features() {
                   </div>
                 </PhoneFrame>
                 <div className="absolute top-16 -right-4 rotate-6 rounded-2xl bg-white px-4 py-3 text-[11px] shadow-lg ring-1 ring-black/5 sm:-right-8">
-                  <p className="text-sm font-bold">PDF</p>
-                  <p className="text-[#667085]">Instant download</p>
+                  <p className="text-sm font-semibold">PDF</p>
+                  <p className="text-[#475467]">Instant download</p>
                 </div>
                 <div className="absolute bottom-16 -left-4 -rotate-3 rounded-2xl bg-white px-4 py-3 text-[11px] shadow-lg ring-1 ring-black/5 sm:-left-8">
-                  <p className="text-sm font-bold">WhatsApp</p>
-                  <p className="text-[#667085]">Forward to group</p>
+                  <p className="text-sm font-semibold">WhatsApp</p>
+                  <p className="text-[#475467]">Forward to group</p>
                 </div>
               </div>
             </div>
             <div className="p-8 sm:p-10 lg:p-12">
               <span className="font-mono text-sm font-semibold text-[#2F6B4F]">Step 4</span>
-              <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-balance text-[#0B1F33] md:text-4xl">
+              <h3 className="mt-1.5 text-2xl font-semibold tracking-tight text-balance text-[#0B1F33] md:text-3xl">
                 Effortless Month End Reporting
               </h3>
               <p className="mt-3 max-w-[40ch] text-sm leading-relaxed text-[#475467]">
@@ -1101,7 +1090,7 @@ function CtaFooter() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:pt-24">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mx-auto max-w-[22ch] text-3xl font-semibold tracking-tight text-balance md:text-5xl">
+            <h2 className="mx-auto max-w-[22ch] text-3xl font-semibold tracking-tight text-balance md:text-4xl">
               Ready for approvals without the paperwork?
             </h2>
             <p className="mx-auto mt-4 max-w-[56ch] text-base leading-relaxed text-white/70">
@@ -1111,7 +1100,7 @@ function CtaFooter() {
             <div className="mt-8 flex flex-col items-center gap-5">
               <a
                 href="#free-trial"
-                className="rounded-full bg-white px-8 py-3.5 text-sm font-bold whitespace-nowrap text-[#0B1F33] shadow-[0_8px_30px_rgba(255,255,255,0.25)] transition hover:bg-[#E9F3EC] active:translate-y-px active:scale-[0.98]"
+                className="rounded-full bg-white px-8 py-3.5 text-sm font-semibold whitespace-nowrap text-[#0B1F33] shadow-[0_8px_30px_rgba(255,255,255,0.25)] transition hover:bg-[#E9F3EC] active:translate-y-px active:scale-[0.98]"
               >
                 {PRIMARY}
               </a>
