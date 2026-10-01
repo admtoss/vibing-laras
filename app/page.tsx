@@ -1075,7 +1075,14 @@ function CtaFooter() {
       h: "Features",
       items: ["AI Chat Assistant", "Scan Receipts", "Smart Memos", "Mobile Approval", "Chat Reporting"],
     },
-    { h: "Company", items: ["About Us", "Privacy Policy", "Terms & Conditions"] },
+    {
+      h: "Company",
+      items: [
+        { label: "About Us", href: "#hero" },
+        { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms of Service", href: "/terms" },
+      ],
+    },
   ];
   return (
     <section id="cta" className="relative overflow-hidden bg-[#151e2c] text-white">
@@ -1133,13 +1140,17 @@ function CtaFooter() {
           <nav key={c.h} aria-label={c.h}>
             <h3 className="text-sm font-semibold">{c.h}</h3>
             <ul className="mt-3 grid gap-2 text-sm text-white/70">
-              {c.items.map((it) => (
-                <li key={it}>
-                  <a href="#hero" className="transition hover:text-white">
-                    {it}
-                  </a>
-                </li>
-              ))}
+              {c.items.map((it) => {
+                const label = typeof it === "string" ? it : it.label;
+                const href = typeof it === "string" ? "#hero" : it.href;
+                return (
+                  <li key={label}>
+                    <a href={href} className="transition hover:text-white">
+                      {label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         ))}
