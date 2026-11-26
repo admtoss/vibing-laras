@@ -12,9 +12,14 @@ const cormorant = Cormorant({
 });
 
 export const metadata: Metadata = {
-  title: "Laras.ai — Secure Company AI for Daily Operations",
+  title: "Laras.ai - A secure AI Assistant for daily operations",
   description:
     "Save hours on daily operations with a secure AI assistant. Turn a full day of manual work into 5 minutes. Just chat.",
+  openGraph: {
+    title: "Laras.ai - A secure AI Assistant for daily operations",
+    description:
+      "Save hours on daily operations with a secure AI assistant. Turn a full day of manual work into 5 minutes. Just chat.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
