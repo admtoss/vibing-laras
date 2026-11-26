@@ -194,16 +194,56 @@ const Velaris = ({
       return () => ro.disconnect();
     }
 
-    let raf: number;
+    let raf = 0;
+    let isVisible = true;
+
     const render = (t: number) => {
+      raf = 0;
+      if (!isVisible || document.hidden) return;
       draw(t);
       raf = requestAnimationFrame(render);
     };
 
-    raf = requestAnimationFrame(render);
+    const start = () => {
+      if (!raf && isVisible && !document.hidden) {
+        raf = requestAnimationFrame(render);
+      }
+    };
+
+    const stop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    const io =
+      typeof IntersectionObserver !== "undefined"
+        ? new IntersectionObserver(
+            ([entry]) => {
+              isVisible = entry.isIntersecting;
+              if (isVisible) start();
+              else stop();
+            },
+            { threshold: 0 },
+          )
+        : null;
+    io?.observe(container);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    draw(0);
+    start();
+
     return () => {
       ro.disconnect();
-      cancelAnimationFrame(raf);
+      io?.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bg, colors, speed, grain]);

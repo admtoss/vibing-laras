@@ -3,6 +3,7 @@
 @theme {
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: var(--font-cormorant), "Cormorant", Georgia, serif;
 }
 
 html {
